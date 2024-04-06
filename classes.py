@@ -19,8 +19,9 @@ class Topic:
         return f"{self.name}:\n{tasks_str}"
     
 class Section:
-    def __init__(self, topic):
-        self.topics.append(topic)
+    def __init__(self, name):
+        self.name = name
+        self.topics = []
 
     def add_topic(self, topic):
         self.topics.append(topic)
@@ -29,3 +30,8 @@ class Section:
         topics_str = "\n".join([f"{topic}" for topic in self.topics])
         return f"{self.name}:\n{topics_str}"
     
+    def  to_dict(self):
+        return {
+            "name": self.name,
+            "topics": [topic.to_dict() for topic in self.topics]
+        }
